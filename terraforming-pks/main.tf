@@ -1,9 +1,10 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
-  token      = "${var.session_token}"
-  version = "~> 1.60"
+  alias   = "source"
+  profile = "svc.tkgi-releng-pipeline"
+  region  = "us-east-2"
+  assume_role {
+    role_arn = "arn:aws:iam::232252265404:role/svc.tkgi-releng-pipeline"
+  }
 }
 
 terraform {
@@ -20,6 +21,11 @@ provider "template" {
 
 provider "tls" {
   version = "~> 1.2"
+}
+
+resource "aws_iam_role" "assume_role" {
+  provider            = aws.destination
+  name                = "assume_role"
 }
 
 locals {
