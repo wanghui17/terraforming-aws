@@ -107,3 +107,7 @@ variable "access_key" {
 variable "secret_key" {
   default = ""
 }
+
+variable "session_token" {
+  default = ""
+}

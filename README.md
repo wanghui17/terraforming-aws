@@ -1,10 +1,4 @@
-# DEPRECATION
-
-This repo is going to be archived.
-The terraform templates that _should_ be used for deploying an Ops Manager, PAS and/or PKS, can be found at https://github.com/pivotal/paving
-No PRs or Issues will be responded to here.
-
-# Terraforming AWS
+# Terraforming AWS [![build-status](https://infra.ci.cf-app.com/api/v1/teams/main/pipelines/terraforming-aws/jobs/deploy-pas/badge)](https://infra.ci.cf-app.com/teams/main/pipelines/terraforming-aws)
 
 ## What is this?
 
