@@ -40,7 +40,7 @@ resource "aws_iam_instance_profile" "pks_master" {
   role = "${aws_iam_role.pks_master.name}"
 
   lifecycle {
-    ignore_changes = ["name"]
+    ignore_changes = [name]
   }
 }
 
@@ -86,6 +86,6 @@ resource "aws_iam_instance_profile" "pks_worker" {
   role = "${aws_iam_role.pks_worker.name}"
 
   lifecycle {
-    ignore_changes = ["name"]
+    ignore_changes = [name]
   }
 }

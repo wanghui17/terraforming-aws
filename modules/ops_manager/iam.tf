@@ -100,6 +100,6 @@ resource "aws_iam_instance_profile" "ops_manager" {
   role = "${aws_iam_role.ops_manager.name}"
 
   lifecycle {
-    ignore_changes = ["name"]
+    ignore_changes = [name]
   }
 }

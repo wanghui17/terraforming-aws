@@ -17,5 +17,5 @@ resource "aws_route53_record" "environment_ns_records" {
   name    = "${var.env_name}"
   type    = "NS"
   ttl     = "300"
-  records = ["${module.infra.name_servers[0]}", "${module.infra.name_servers[1]}", "${module.infra.name_servers[2]}", "${module.infra.name_servers[3]}"]
+  records = [""]
 }
