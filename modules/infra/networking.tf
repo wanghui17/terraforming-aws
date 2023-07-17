@@ -12,9 +12,8 @@ data "template_file" "infrastructure_subnet_gateways" {
   # Render the template once for each availability zone
   count    = "${length(var.availability_zones)}"
   template = "$${gateway}"
-  vars {
-    gateway = "${cidrhost(element(aws_subnet.infrastructure_subnets.*.cidr_block, count.index), 1)}"
-  }
+  
+  gateway = "${cidrhost(element(aws_subnet.infrastructure_subnets.*.cidr_block, count.index), 1)}"
   
 }
 
@@ -46,11 +45,12 @@ resource "aws_subnet" "public_subnets" {
   cidr_block        = "${cidrsubnet(local.public_cidr, 2, count.index)}"
   availability_zone = "${element(var.availability_zones, count.index)}"
 
-  tags = "${merge(var.tags, tomap({
-    Name = "${var.env_name}-public-subnet${count.index}"
-    kubernetes.io/role/elb = "1"
-    SubnetType = "Utility"
-    }))}"
+  tags = merge(
+    var.tags, 
+    { Name = "${var.env_name}-public-subnet${count.index}" },
+    { "kubernetes.io/role/elb" = "1" },
+    { "SubnetType" = "Utility" }
+  )
 
   # Ignore additional tags that are added for specifying clusters.
   lifecycle {
