@@ -1,57 +1,57 @@
 variable "vpc_id" {
-  type = "string"
+  type = string
 }
 
 variable "env_name" {
-  type = "string"
+  type = string
 }
 
 variable "availability_zones" {
-  type = "list"
+  type = list
 }
 
 variable "vpc_cidr" {
-  type = "string"
+  type = string
 }
 
 variable "region" {
-  type = "string"
+  type = string
 }
 
 variable "zone_id" {
-  type = "string"
+  type = string
 }
 
 variable "use_route53" {}
 
 variable "dns_suffix" {
-  type = "string"
+  type = string
 }
 
 variable "public_subnet_ids" {
-  type = "list"
+  type = list
 }
 
 variable "private_route_table_ids" {
-  type = "list"
+  type = list
 }
 
 variable "tags" {
-  type = "map"
+  type = map
 }
 
 variable "lb_cert_pem" {
-  type        = "string"
+  type        = string
   description = "Certificate attached directly to LB fronting the uaa and credhub"
 }
 
 variable "lb_private_key_pem" {
-  type        = "string"
+  type        = string
   description = "Private key for lb_cert_pem, this will be loaded into ACM"
 }
 
 variable "lb_issuer" {
-  type        = "string"
+  type        = string
   description = "The intermediate certificate chain for our LB cert"
 }
 

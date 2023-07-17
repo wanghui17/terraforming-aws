@@ -52,7 +52,7 @@ resource "aws_subnet" "public_subnets" {
 
   # Ignore additional tags that are added for specifying clusters.
   lifecycle {
-    ignore_changes = ["tags"]
+    ignore_changes = [tags]
   }
 }
 

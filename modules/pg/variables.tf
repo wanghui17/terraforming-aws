@@ -1,15 +1,15 @@
 variable "db_username" {
-  type = "string"
+  type = string
 }
 
 variable "db_password" {
-  type = "string"
+  type = string
 }
 
 variable "db_address" {
-  type = "string"
+  type = string
 }
 
 variable "db_port" {
-  type = "string"
+  type = string
 }

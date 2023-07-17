@@ -1,44 +1,44 @@
 variable "env_name" {
-  type = "string"
+  type = string
 }
 
 variable "region" {
-  type = "string"
+  type = string
 }
 
 variable "availability_zones" {
-  type = "list"
+  type = list
 }
 
 variable "vpc_id" {
-  type = "string"
+  type = string
 }
 
 variable "vpc_cidr" {
-  type = "string"
+  type = string
 }
 
 variable "private_route_table_ids" {
-  type = "list"
+  type = list
 }
 
 variable "public_subnet_ids" {
-  type = "list"
+  type = list
 }
 
 variable "zone_id" {
-  type = "string"
+  type = string
 }
 
 variable "dns_suffix" {
-  type = "string"
+  type = string
 }
 
 variable "use_route53" {
 }
 
 variable "tags" {
-  type = "map"
+  type = map
 }
 
 module "cidr_lookup" {

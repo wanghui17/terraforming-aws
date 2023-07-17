@@ -13,21 +13,18 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 3.20.0"
     }
+    random = {
+      version = ">= 2.0"
+    }
+    template = {
+      version = ">= 1.0"
+    }
+    tls = {
+      version = ">= 1.2"
+    }
   }
 
   required_version = ">= 0.15"
-}
-
-provider "random" {
-  version = ">= 2.0"
-}
-
-provider "template" {
-  version = ">= 1.0"
-}
-
-provider "tls" {
-  version = ">= 1.2"
 }
 
 locals {

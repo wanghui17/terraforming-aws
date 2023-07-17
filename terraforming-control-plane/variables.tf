@@ -4,11 +4,11 @@ variable "dns_suffix" {}
 variable "region" {}
 
 variable "availability_zones" {
-  type = "list"
+  type = list
 }
 
 variable "vpc_cidr" {
-  type    = "string"
+  type    = string
   default = "10.0.0.0/16"
 }
 
@@ -70,7 +70,7 @@ variable "rds_instance_class" {
 }
 
 variable "rds_instance_count" {
-  type    = "string"
+  type    = string
   default = 1
 }
 
@@ -78,7 +78,7 @@ variable "rds_instance_count" {
 * Tags  *
 *********/
 variable "tags" {
-  type        = "map"
+  type        = map
   default     = {}
   description = "Key/value tags to assign to all AWS resources"
 }
