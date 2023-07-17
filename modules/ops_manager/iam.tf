@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "ops_manager" {
     actions = ["iam:PassRole"]
 
     resources = [
-      "${compact(concat(list(aws_iam_role.ops_manager.arn), var.additional_iam_roles_arn))}",
+      "${compact(concat(tolist([aws_iam_role.ops_manager.arn, var.additional_iam_roles_arn])))}",
     ]
   }
 
