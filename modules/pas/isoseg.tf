@@ -33,7 +33,7 @@ resource "aws_security_group" "isoseg_lb_security_group" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-isoseg-lb-security-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-isoseg-lb-security-group"}))}"
 }
 
 resource "aws_lb" "isoseg" {

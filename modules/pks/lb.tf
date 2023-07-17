@@ -25,7 +25,7 @@ resource "aws_security_group" "pks_api_lb_security_group" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-pks-api-lb-security-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-pks-api-lb-security-group"}))}"
 }
 
 resource "aws_lb" "pks_api" {

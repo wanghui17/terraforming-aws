@@ -1,6 +1,6 @@
 locals {
-  data_zone_id     = "${element(concat(data.aws_route53_zone.pcf_zone.*.zone_id, list("")), 0)}"
-  resource_zone_id = "${element(concat(aws_route53_zone.pcf_zone.*.zone_id, list("")), 0)}"
+  data_zone_id     = "${element(concat(data.aws_route53_zone.pcf_zone.*.zone_id, tolist([""])), 0)}"
+  resource_zone_id = "${element(concat(aws_route53_zone.pcf_zone.*.zone_id, tolist([""])), 0)}"
   zone_id          = "${var.hosted_zone == "" ? local.resource_zone_id : local.data_zone_id}"
 
   hosted_zone_count = "${var.hosted_zone == "" ? 0 : 1}"
@@ -21,5 +21,5 @@ resource "aws_route53_zone" "pcf_zone" {
 
   name = "${var.env_name}.${var.dns_suffix}"
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-hosted-zone"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-hosted-zone"}))}"
 }

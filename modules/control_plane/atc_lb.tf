@@ -26,7 +26,7 @@ resource "aws_security_group" "control_plane" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-control-plane-security-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-control-plane-security-group"}))}"
 }
 
 resource "aws_lb" "control_plane" {

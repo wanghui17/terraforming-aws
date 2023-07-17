@@ -26,7 +26,7 @@ resource "aws_security_group" "web_lb" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-lb-security-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-lb-security-group"}))}"
 }
 
 resource "aws_lb" "web" {
@@ -103,7 +103,7 @@ resource "aws_security_group" "ssh_lb" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-ssh-lb-security-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-ssh-lb-security-group"}))}"
 }
 
 resource "aws_lb" "ssh" {
@@ -165,7 +165,7 @@ resource "aws_security_group" "tcp_lb" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-tcp-lb-security-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-tcp-lb-security-group"}))}"
 }
 
 resource "aws_lb" "tcp" {

@@ -1,4 +1,4 @@
-resource "aws_subnet" "pks_subnets" {
+coresource "aws_subnet" "pks_subnets" {
   count             = "${length(var.availability_zones)}"
   vpc_id            = "${var.vpc_id}"
   cidr_block        = "${cidrsubnet(local.pks_cidr, 2, count.index)}"

@@ -5,7 +5,7 @@ resource "aws_subnet" "infrastructure_subnets" {
   cidr_block        = "${cidrsubnet(local.infrastructure_cidr, 2, count.index)}"
   availability_zone = "${element(var.availability_zones, count.index)}"
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-infrastructure-subnet${count.index}"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-infrastructure-subnet${count.index}"}))}"
 }
 
 data "template_file" "infrastructure_subnet_gateways" {
@@ -46,9 +46,9 @@ resource "aws_subnet" "public_subnets" {
   cidr_block        = "${cidrsubnet(local.public_cidr, 2, count.index)}"
   availability_zone = "${element(var.availability_zones, count.index)}"
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-public-subnet${count.index}"), 
-      map("kubernetes.io/role/elb", "1"), 
-      map("SubnetType", "Utility"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-public-subnet${count.index}}"), 
+      tomap({"kubernetes.io/role/elb" = "1"}), 
+      tomap({"SubnetType" = "Utility"}))}"
 
   # Ignore additional tags that are added for specifying clusters.
   lifecycle {

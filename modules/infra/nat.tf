@@ -24,7 +24,7 @@ resource "aws_security_group" "nat_security_group" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-nat-security-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-nat-security-group"}))}"
 }
 
 resource "aws_nat_gateway" "nat" {
@@ -32,7 +32,7 @@ resource "aws_nat_gateway" "nat" {
   allocation_id = "${aws_eip.nat_eip.id}"
   subnet_id     = "${element(aws_subnet.public_subnets.*.id, 0)}"
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-nat"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-nat"}))}"
 }
 
 resource "aws_eip" "nat_eip" {

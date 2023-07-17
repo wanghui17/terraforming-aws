@@ -3,14 +3,14 @@ resource "aws_eip" "ops_manager_attached" {
   count    = "${var.private ? 0 : local.ops_man_vm }"
   vpc      = true
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-om-eip"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-om-eip"}))}"
 }
 
 resource "aws_eip" "ops_manager_unattached" {
   count = "${var.private || (local.ops_man_vm > 0) ? 0 : 1}"
   vpc   = true
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-om-eip"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-om-eip"}))}"
 }
 
 resource "aws_eip" "optional_ops_manager" {
@@ -18,5 +18,5 @@ resource "aws_eip" "optional_ops_manager" {
   count    = "${var.private ? 0 : local.optional_ops_man_vm}"
   vpc      = true
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-optional-om-eip"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-optional-om-eip"}))}"
 }

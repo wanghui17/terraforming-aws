@@ -59,19 +59,19 @@ output "pas_resources_bucket" {
 }
 
 output "pas_buildpacks_backup_bucket" {
-  value = "${element(concat(aws_s3_bucket.buildpacks_backup_bucket.*.bucket, list("")), 0)}"
+  value = "${element(concat(aws_s3_bucket.buildpacks_backup_bucket.*.bucket, tolist([""])), 0)}"
 }
 
 output "pas_droplets_backup_bucket" {
-  value = "${element(concat(aws_s3_bucket.droplets_backup_bucket.*.bucket, list("")), 0)}"
+  value = "${element(concat(aws_s3_bucket.droplets_backup_bucket.*.bucket, tolist([""])), 0)}"
 }
 
 output "pas_packages_backup_bucket" {
-  value = "${element(concat(aws_s3_bucket.packages_backup_bucket.*.bucket, list("")), 0)}"
+  value = "${element(concat(aws_s3_bucket.packages_backup_bucket.*.bucket, tolist([""])), 0)}"
 }
 
 output "pas_resources_backup_bucket" {
-  value = "${element(concat(aws_s3_bucket.resources_backup_bucket.*.bucket, list("")), 0)}"
+  value = "${element(concat(aws_s3_bucket.resources_backup_bucket.*.bucket, tolist([""])), 0)}"
 }
 
 # ============ Load Balancers ==================================================
@@ -93,9 +93,9 @@ output "ssh_target_groups" {
 
 output "isoseg_target_groups" {
   value = [
-    "${element(concat(aws_lb_target_group.isoseg_80.*.name, list("")), 0)}",
-    "${element(concat(aws_lb_target_group.isoseg_443.*.name, list("")), 0)}",
-    "${element(concat(aws_lb_target_group.isoseg_4443.*.name, list("")), 0)}",
+    "${element(concat(aws_lb_target_group.isoseg_80.*.name, tolist([""])), 0)}",
+    "${element(concat(aws_lb_target_group.isoseg_443.*.name, tolist([""])), 0)}",
+    "${element(concat(aws_lb_target_group.isoseg_4443.*.name, tolist([""])), 0)}",
   ]
 }
 

@@ -4,7 +4,7 @@ resource "aws_subnet" "rds_subnets" {
   cidr_block        = "${cidrsubnet(local.rds_cidr, 2, count.index)}"
   availability_zone = "${element(var.availability_zones, count.index)}"
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-rds-subnet${count.index}"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-rds-subnet${count.index}"}))}"
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
@@ -13,7 +13,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 
   subnet_ids = ["${aws_subnet.rds_subnets.*.id}"]
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-db-subnet-group"))}"
+  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-db-subnet-group"}))}"
 
   count = "${var.rds_instance_count > 0 ? 1 : 0}"
 }
@@ -37,7 +37,7 @@ resource "aws_security_group" "rds_security_group" {
     to_port     = 0
   }
 
-  tags  = "${merge(var.tags, map("Name", "${var.env_name}-rds-security-group"))}"
+  tags  = "${merge(var.tags, tomap({"Name" = "${var.env_name}-rds-security-group"}))}"
   count = "${var.rds_instance_count > 0 ? 1 : 0}"
 }
 
