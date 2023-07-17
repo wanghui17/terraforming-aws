@@ -103,7 +103,7 @@ variable "rds_instance_count" {
 ********/
 
 variable "tags" {
-  type        = "map"
+  type        = map
   default     = {}
   description = "Key/value tags to assign to all AWS resources"
 }
