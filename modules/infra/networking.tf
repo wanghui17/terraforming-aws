@@ -46,7 +46,11 @@ resource "aws_subnet" "public_subnets" {
   cidr_block        = "${cidrsubnet(local.public_cidr, 2, count.index)}"
   availability_zone = "${element(var.availability_zones, count.index)}"
 
-  tags = "${merge(var.tags, tomap({"Name" = "${var.env_name}-public-subnet${count.index}}"), tomap({"kubernetes.io/role/elb" = "1"}), tomap({"SubnetType" = "Utility"}))}"
+  tags = "${merge(var.tags, tomap({
+    Name = "${var.env_name}-public-subnet${count.index}"
+    kubernetes.io/role/elb = "1"
+    SubnetType = "Utility"
+    }))}"
 
   # Ignore additional tags that are added for specifying clusters.
   lifecycle {
