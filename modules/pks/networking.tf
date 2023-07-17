@@ -13,8 +13,10 @@ data "template_file" "pks_subnet_gateways" {
   # Render the template once for each availability zone
   count    = "${length(var.availability_zones)}"
   template = "$${gateway}"
-
-  gateway = "${cidrhost(element(aws_subnet.pks_subnets.*.cidr_block, count.index), 1)}"
+  vars {
+    gateway = "${cidrhost(element(aws_subnet.pks_subnets.*.cidr_block, count.index), 1)}"
+  }
+  
 }
 
 resource "aws_route_table_association" "route_pks_subnets" {
