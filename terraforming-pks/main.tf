@@ -23,11 +23,6 @@ provider "tls" {
   version = "~> 1.2"
 }
 
-resource "aws_iam_role" "assume_role" {
-  provider            = aws.destination
-  name                = "assume_role"
-}
-
 locals {
   ops_man_subnet_id = "${var.ops_manager_private ? element(module.infra.infrastructure_subnet_ids, 0) : element(module.infra.public_subnet_ids, 0)}"
 
