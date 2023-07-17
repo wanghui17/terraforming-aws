@@ -120,3 +120,7 @@ variable "access_key" {
 variable "secret_key" {
   default = ""
 }
+
+variable "access_token" {
+  default = ""
+}
