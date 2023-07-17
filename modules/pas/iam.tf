@@ -3,12 +3,10 @@
 data "template_file" "pas_backup_bucket_policy" {
   template = "${file("${path.module}/templates/iam_pas_backup_buckets_policy.json")}"
 
-  vars {
-    buildpacks_backup_bucket_arn = "${aws_s3_bucket.buildpacks_backup_bucket.arn}"
-    droplets_backup_bucket_arn   = "${aws_s3_bucket.droplets_backup_bucket.arn}"
-    packages_backup_bucket_arn   = "${aws_s3_bucket.packages_backup_bucket.arn}"
-    resources_backup_bucket_arn  = "${aws_s3_bucket.resources_backup_bucket.arn}"
-  }
+  buildpacks_backup_bucket_arn = "${aws_s3_bucket.buildpacks_backup_bucket.arn}"
+  droplets_backup_bucket_arn   = "${aws_s3_bucket.droplets_backup_bucket.arn}"
+  packages_backup_bucket_arn   = "${aws_s3_bucket.packages_backup_bucket.arn}"
+  resources_backup_bucket_arn  = "${aws_s3_bucket.resources_backup_bucket.arn}"
 
   count = "${var.create_backup_pas_buckets ? 1 : 0}"
 }
@@ -62,13 +60,11 @@ resource "aws_kms_alias" "blobstore_kms_key_alias" {
 data "template_file" "ert" {
   template = "${file("${path.module}/templates/iam_pas_buckets_policy.json")}"
 
-  vars {
-    buildpacks_bucket_arn = "${aws_s3_bucket.buildpacks_bucket.arn}"
-    droplets_bucket_arn   = "${aws_s3_bucket.droplets_bucket.arn}"
-    packages_bucket_arn   = "${aws_s3_bucket.packages_bucket.arn}"
-    resources_bucket_arn  = "${aws_s3_bucket.resources_bucket.arn}"
-    kms_key_arn           = "${aws_kms_key.blobstore_kms_key.arn}"
-  }
+  buildpacks_bucket_arn = "${aws_s3_bucket.buildpacks_bucket.arn}"
+  droplets_bucket_arn   = "${aws_s3_bucket.droplets_bucket.arn}"
+  packages_bucket_arn   = "${aws_s3_bucket.packages_bucket.arn}"
+  resources_bucket_arn  = "${aws_s3_bucket.resources_bucket.arn}"
+  kms_key_arn           = "${aws_kms_key.blobstore_kms_key.arn}"
 }
 
 resource "aws_iam_role" "pas_bucket_access" {

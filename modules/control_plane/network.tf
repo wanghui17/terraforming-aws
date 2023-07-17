@@ -14,9 +14,7 @@ data "template_file" "subnet_gateways" {
   count    = "${length(var.availability_zones)}"
   template = "$${gateway}"
 
-  vars {
-    gateway = "${cidrhost(element(aws_subnet.control_plane.*.cidr_block, count.index), 1)}"
-  }
+  gateway = "${cidrhost(element(aws_subnet.control_plane.*.cidr_block, count.index), 1)}"
 }
 
 resource "aws_route_table_association" "route_control_plane_subnets" {

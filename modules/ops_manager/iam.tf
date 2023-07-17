@@ -1,11 +1,9 @@
 data "template_file" "ops_manager" {
   template = "${file("${path.module}/templates/iam_policy.json")}"
 
-  vars {
-    iam_instance_profile_arn = "${aws_iam_instance_profile.ops_manager.arn}"
-    ops_manager_bucket_arn   = "${aws_s3_bucket.ops_manager_bucket.arn}"
-    iam_ops_manager_role_arn = "${aws_iam_role.ops_manager.arn}"
-  }
+  iam_instance_profile_arn = "${aws_iam_instance_profile.ops_manager.arn}"
+  ops_manager_bucket_arn   = "${aws_s3_bucket.ops_manager_bucket.arn}"
+  iam_ops_manager_role_arn = "${aws_iam_role.ops_manager.arn}"
 }
 
 data "aws_iam_policy_document" "ops_manager" {

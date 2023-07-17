@@ -10,9 +10,7 @@ resource "aws_subnet" "pas_subnets" {
 }
 
 data "template_file" "pas_subnet_gateways" {
-  vars {
-    gateway = "${cidrhost(element(aws_subnet.pas_subnets.*.cidr_block, count.index), 1)}"
-  }
+  gateway = "${cidrhost(element(aws_subnet.pas_subnets.*.cidr_block, count.index), 1)}"
 
   # Render the template once for each availability zone
   count    = "${length(var.availability_zones)}"
@@ -36,9 +34,7 @@ resource "aws_subnet" "services_subnets" {
 
 
 data "template_file" "services_subnet_gateways" {
-  vars {
-    gateway = "${cidrhost(element(aws_subnet.services_subnets.*.cidr_block, count.index), 1)}"
-  }
+  gateway = "${cidrhost(element(aws_subnet.services_subnets.*.cidr_block, count.index), 1)}"
 
   # Render the template once for each availability zone
   count    = "${length(var.availability_zones)}"
