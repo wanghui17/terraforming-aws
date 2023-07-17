@@ -8,19 +8,26 @@ provider "aws" {
 }
 
 terraform {
-  required_version = "~> 0.15.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.20.0"
+    }
+  }
+
+  required_version = ">= 0.15"
 }
 
 provider "random" {
-  version = "~> 2.0"
+  version = ">= 2.0"
 }
 
 provider "template" {
-  version = "~> 1.0"
+  version = ">= 1.0"
 }
 
 provider "tls" {
-  version = "~> 1.2"
+  version = ">= 1.2"
 }
 
 locals {
