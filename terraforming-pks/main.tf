@@ -3,7 +3,7 @@ provider "aws" {
   secret_key = "${var.secret_key}"
   region     = "${var.region}"
   token = "${var.access_token}"
-  version = "~> 1.60"
+  version = "~> 5.0"
 }
 
 terraform {
@@ -11,15 +11,15 @@ terraform {
 }
 
 provider "random" {
-  version = "~> 2.0"
+ 
 }
 
 provider "template" {
-  version = "~> 1.0"
+  
 }
 
 provider "tls" {
-  version = "~> 1.2"
+  
 }
 
 locals {
