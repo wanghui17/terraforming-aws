@@ -3,7 +3,7 @@ provider "aws" {
   secret_key = "${var.secret_key}"
   region     = "${var.region}"
   token = "${var.access_token}"
-  version = "~> 3.0"
+  version = "~> 1.60"
 }
 
 terraform {
