@@ -3,11 +3,11 @@ output "bucket" {
 }
 
 output "public_ip" {
-  value = "${local.ops_man_vm ? element(concat(aws_eip.ops_manager_attached.*.public_ip, [""]), 0) : element(concat(aws_eip.ops_manager_unattached.*.public_ip, [""]), 0)}"
+  value = "${local.ops_man_vm > 0 ? element(concat(aws_eip.ops_manager_attached.*.public_ip, [""]), 0) : element(concat(aws_eip.ops_manager_unattached.*.public_ip, [""]), 0)}"
 }
 
 output "dns" {
-  value = "${local.ops_man_vm ? element(concat(aws_route53_record.ops_manager_attached_eip.*.name, [""]), 0) : element(concat(aws_route53_record.ops_manager_unattached_eip.*.name, [""]), 0)}"
+  value = "${local.ops_man_vm > 0 ? element(concat(aws_route53_record.ops_manager_attached_eip.*.name, [""]), 0) : element(concat(aws_route53_record.ops_manager_unattached_eip.*.name, [""]), 0)}"
 }
 
 output "optional_dns" {
