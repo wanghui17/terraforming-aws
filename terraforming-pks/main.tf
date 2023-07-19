@@ -1,26 +1,31 @@
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
-  token = "${var.access_token}"
-  version = "~> 5.0"
+  region     = var.region
+  access_key = var.access_key
+  secret_key = var.secret_key
+  assume_role {
+      role_arn = var.role_arn
+  }
 }
 
 terraform {
-  required_version = "< 0.12.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.65"
+   }
+    random = {
+      source = "hashicorp/random"
+    }
+    tls = {
+      source = "hashicorp/tls"
+    }
+    template = {
+      source = "hashicorp/template"
+    }
+  }
+  required_version = "~> 1.0"
 }
 
-provider "random" {
- 
-}
-
-provider "template" {
-  
-}
-
-provider "tls" {
-  
-}
 
 locals {
   ops_man_subnet_id = "${var.ops_manager_private ? element(module.infra.infrastructure_subnet_ids, 0) : element(module.infra.public_subnet_ids, 0)}"
@@ -74,8 +79,6 @@ module "ops_manager" {
   use_route53              = "${var.use_route53}"
   bucket_suffix            = "${local.bucket_suffix}"
   additional_iam_roles_arn = ["${module.pks.pks_worker_iam_role_arn}", "${module.pks.pks_master_iam_role_arn}"]
-
-  iam_users = "${var.iam_users ? 1 : 0}"
 
   tags = "${local.actual_tags}"
 }

@@ -9,7 +9,7 @@ variable "hosted_zone" {
 variable "region" {}
 
 variable "availability_zones" {
-  type = "list"
+  type = list
 }
 
 variable "internetless" {
@@ -17,11 +17,11 @@ variable "internetless" {
 }
 
 variable "iam_users" {
-  default = true
+  default = 0
 }
 
 variable "vpc_cidr" {
-  type    = "string"
+  type    = string
   default = "10.0.0.0/16"
 }
 
@@ -36,7 +36,7 @@ variable "use_route53" {
 
 variable "ops_manager_ami" {
   default     = ""
-  type        = "string"
+  type        = string
   description = "Ops Manager AMI on AWS. Ops Manager VM will be skipped if this is empty"
 }
 
@@ -58,25 +58,25 @@ variable "ops_manager_private" {
 ********************/
 
 variable "ssl_cert" {
-  type        = "string"
+  type        = string
   description = "the contents of an SSL certificate to be used by the PKS API, optional if `ssl_ca_cert` is provided"
   default     = ""
 }
 
 variable "ssl_private_key" {
-  type        = "string"
+  type        = string
   description = "the contents of an SSL private key to be used by the PKS API, optional if `ssl_ca_cert` is provided"
   default     = ""
 }
 
 variable "ssl_ca_cert" {
-  type        = "string"
+  type        = string
   description = "the contents of a CA public key to be used to sign the generated PKS API certificate, optional if `ssl_cert` is provided"
   default     = ""
 }
 
 variable "ssl_ca_private_key" {
-  type        = "string"
+  type        = string
   description = "the contents of a CA private key to be used to sign the generated PKS API certificate, optional if `ssl_cert` is provided"
   default     = ""
 }
@@ -94,7 +94,7 @@ variable "rds_instance_class" {
 }
 
 variable "rds_instance_count" {
-  type    = "string"
+  type    = string
   default = 0
 }
 
@@ -103,7 +103,7 @@ variable "rds_instance_count" {
 ********/
 
 variable "tags" {
-  type        = "map"
+  type        = map
   default     = {}
   description = "Key/value tags to assign to all AWS resources"
 }
@@ -123,4 +123,12 @@ variable "secret_key" {
 
 variable "access_token" {
   default = ""
+}
+
+variable "role_arn" {
+  type = string
+}
+
+variable "svc_role_name" {
+  type = string
 }
