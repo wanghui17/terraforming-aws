@@ -15,7 +15,7 @@ data "aws_route53_zone" "pcf_zone" {
   count = "${var.use_route53 ? local.hosted_zone_count : 0}"
 }
 
-resource "aws_route53_zone" "pcf_zone_1" {
+resource "aws_route53_zone" "pcf_zone" {
   count = "${var.use_route53 ? (1 - local.hosted_zone_count) : 0}"
   name = "${var.env_name}.${var.dns_suffix}"
   tags = merge(
