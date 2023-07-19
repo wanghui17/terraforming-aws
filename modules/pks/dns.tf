@@ -8,6 +8,4 @@ resource "aws_route53_record" "pks_api_dns" {
     zone_id                = "${aws_lb.pks_api.zone_id}"
     evaluate_target_health = true
   }
-
-  count = "${var.use_route53}"
 }

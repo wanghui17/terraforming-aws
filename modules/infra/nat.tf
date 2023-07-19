@@ -1,11 +1,8 @@
 resource "aws_route_table" "deployment" {
-  count  = "${length(var.availability_zones)}"
   vpc_id = "${aws_vpc.vpc.id}"
 }
 
 resource "aws_security_group" "nat_security_group" {
-  count = "${var.internetless ? 0 : 1}"
-
   name        = "nat_security_group"
   description = "NAT Security Group"
   vpc_id      = "${aws_vpc.vpc.id}"
@@ -24,15 +21,21 @@ resource "aws_security_group" "nat_security_group" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-nat-security-group"))}"
+  tags = merge(
+    var.tags, 
+    {"Name" = "${var.env_name}-nat-security-group"}
+    )
 }
 
 resource "aws_nat_gateway" "nat" {
-  count = "${var.internetless ? 0 : length(var.availability_zones)}"
-  allocation_id = "${element(aws_eip.nat_eip.*.id, count.index)}"
-  subnet_id     = "${element(aws_subnet.public_subnets.*.id, count.index)}"
+  count = length(var.availability_zones)
+  allocation_id = element(aws_eip.nat_eip.*.id, count.index)
+  subnet_id     = element(aws_subnet.public_subnets.*.id, count.index)
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-nat${count.index}"))}"
+  tags = merge(
+    var.tags, 
+    { "Name" =  "${var.env_name}-nat${count.index}" }
+  )
 }
 
 resource "aws_eip" "nat_eip" {

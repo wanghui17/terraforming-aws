@@ -1,5 +1,5 @@
 variable "region" {
-  type = "string"
+  type = string
 }
 
 variable "private" {}
@@ -19,11 +19,11 @@ variable "vpc_id" {}
 variable "vpc_cidr" {}
 
 variable "iam_users" {
-  default = 1
+  default = false
 }
 
 variable "additional_iam_roles_arn" {
-  type    = "list"
+  type    = list
   default = []
 }
 
@@ -36,7 +36,7 @@ variable "zone_id" {}
 variable "bucket_suffix" {}
 
 variable "tags" {
-  type = "map"
+  type = map
 }
 
 locals {

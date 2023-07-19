@@ -25,7 +25,10 @@ resource "aws_security_group" "pks_api_lb_security_group" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-pks-api-lb-security-group"))}"
+  tags = merge(
+    var.tags, 
+    { "Name" = "${var.env_name}-pks-api-lb-security-group" }
+  )
 }
 
 resource "aws_lb" "pks_api" {
@@ -33,7 +36,7 @@ resource "aws_lb" "pks_api" {
   load_balancer_type               = "network"
   enable_cross_zone_load_balancing = true
   internal                         = false
-  subnets                          = ["${var.public_subnet_ids}"]
+  subnets                          = element("${var.public_subnet_ids}",1)
 }
 
 resource "aws_lb_listener" "pks_api_9021" {

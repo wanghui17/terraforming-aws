@@ -1,23 +1,23 @@
 variable "access_key" {
-  type = "string"
+  type = string
 }
 
 variable "secret_key" {
-  type = "string"
+  type = string
 }
 
 variable "common_name" {
-  type = "string"
+  type = string
 }
 
 variable "aws_hosted_zone" {
-  type = "string"
+  type = string
 }
 
 variable "registration_email" {
-  type = "string"
+  type = string
 }
 
 variable "sans" {
-  type = "list"
+  type = list
 }

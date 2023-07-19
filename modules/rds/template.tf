@@ -4,7 +4,10 @@ resource "aws_subnet" "rds_subnets" {
   cidr_block        = "${cidrsubnet(local.rds_cidr, 2, count.index)}"
   availability_zone = "${element(var.availability_zones, count.index)}"
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-rds-subnet${count.index}"))}"
+  tags = merge(
+    var.tags, 
+    {"Name" = "${var.env_name}-rds-subnet${count.index}"}
+  )
 }
 
 resource "aws_db_subnet_group" "rds_subnet_group" {
@@ -13,9 +16,11 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 
   subnet_ids = ["${aws_subnet.rds_subnets.*.id}"]
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-db-subnet-group"))}"
+  tags = merge(
+    var.tags, 
+    {"Name" = "${var.env_name}-db-subnet-group"}
+  )
 
-  count = "${var.rds_instance_count > 0 ? 1 : 0}"
 }
 
 resource "aws_security_group" "rds_security_group" {
@@ -37,12 +42,13 @@ resource "aws_security_group" "rds_security_group" {
     to_port     = 0
   }
 
-  tags  = "${merge(var.tags, map("Name", "${var.env_name}-rds-security-group"))}"
-  count = "${var.rds_instance_count > 0 ? 1 : 0}"
+  tags  = merge(
+    var.tags, 
+    {"Name" = "${var.env_name}-rds-security-group"}
+  )
 }
 
 resource "random_string" "rds_password" {
-  count = "${var.rds_instance_count > 0 ? 1 : 0}"
   length  = 16
   special = false
 }
@@ -64,7 +70,7 @@ resource "aws_db_instance" "rds" {
   backup_retention_period = 7
   apply_immediately       = true
 
-  count = "${var.rds_instance_count}"
+  
 
   tags = "${var.tags}"
 }

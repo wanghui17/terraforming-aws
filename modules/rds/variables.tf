@@ -7,38 +7,38 @@ variable "rds_instance_class" {
 }
 
 variable "engine" {
-  type = "string"
+  type = string
 }
 
 variable "engine_version" {
-  type = "string"
+  type = string
 }
 
 variable "db_port" {}
 
 variable "rds_instance_count" {
-  type    = "string"
+  type    = string
   default = 0
 }
 
 variable "env_name" {
-  type = "string"
+  type = string
 }
 
 variable "availability_zones" {
-  type = "list"
+  type = list
 }
 
 variable "vpc_cidr" {
-  type = "string"
+  type = string
 }
 
 variable "vpc_id" {
-  type = "string"
+  type = string
 }
 
 variable "tags" {
-  type = "map"
+  type = map
 }
 
 module "cidr_lookup" {

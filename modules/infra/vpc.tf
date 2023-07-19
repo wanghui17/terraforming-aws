@@ -3,7 +3,10 @@ resource "aws_vpc" "vpc" {
   instance_tenancy     = "default"
   enable_dns_hostnames = true
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-vpc"))}"
+  tags = merge(
+    var.tags, 
+    {"Name" = "${var.env_name}-vpc"}
+  )
 }
 
 resource "aws_security_group" "vms_security_group" {
@@ -25,7 +28,10 @@ resource "aws_security_group" "vms_security_group" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-vms-security-group"))}"
+  tags = merge(
+    var.tags, 
+    { "Name" = "${var.env_name}-vms-security-group"}
+  )
 }
 
 locals {

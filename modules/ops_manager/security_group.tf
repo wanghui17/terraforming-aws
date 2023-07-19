@@ -31,5 +31,8 @@ resource "aws_security_group" "ops_manager_security_group" {
     to_port     = 0
   }
 
-  tags = "${merge(var.tags, map("Name", "${var.env_name}-ops-manager-security-group"))}"
+  tags = merge(
+    var.tags, 
+    { "Name" = "${var.env_name}-ops-manager-security-group" }
+  )
 }
