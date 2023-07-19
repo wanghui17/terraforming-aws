@@ -14,7 +14,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   name        = "${var.env_name}_db_subnet_group"
   description = "RDS Subnet Group"
 
-  subnet_ids = ["${aws_subnet.rds_subnets.*.id}"]
+  subnet_ids = ["${aws_subnet.rds_subnets[*].id}"]
 
   tags = merge(
     var.tags, 

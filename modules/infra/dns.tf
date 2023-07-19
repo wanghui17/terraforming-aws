@@ -11,7 +11,7 @@ locals {
 }
 
 data "aws_route53_zone" "pcf_zone" {
-  name = "${var.hosted_zone}"
+  name = var.hosted_zone
 }
 
 resource "aws_route53_zone" "pcf_zone" {
