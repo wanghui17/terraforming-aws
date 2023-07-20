@@ -30,7 +30,7 @@ resource "aws_security_group" "nat_security_group" {
 }
 
 resource "aws_nat_gateway" "nat" {
-  count = length(var.availability_zones)
+  count = "${var.internetless ? 0 : length(var.availability_zones)}"
   allocation_id = element(aws_eip.nat_eip.*.id, count.index)
   subnet_id     = element(aws_subnet.public_subnets.*.id, count.index)
 
