@@ -26,6 +26,7 @@ module "infra" {
   internetless       = "${var.internetless}"
 
   hosted_zone = "${var.hosted_zone}"
+  hostd_zone_id = "${var.hostd_zone_id}"
   dns_suffix  = "${var.dns_suffix}"
   use_route53 = "${var.use_route53}"
 

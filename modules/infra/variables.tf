@@ -2,6 +2,10 @@ variable "env_name" {
   type = string
 }
 
+variable "hostd_zone_id" {
+  type = string
+}
+
 variable "region" {
   type = string
 }
