@@ -62,10 +62,10 @@ resource "aws_db_instance" "rds" {
   engine_version          = "${var.engine_version}"
   identifier              = "${var.env_name}"
   username                = "${var.rds_db_username}"
-  password                = "${random_string.rds_password.result}"
-  db_subnet_group_name    = "${aws_db_subnet_group.rds_subnet_group.name}"
+  password                = "${random_string.rds_password[count.index].result}"
+  db_subnet_group_name    = "${aws_db_subnet_group.rds_subnet_group[count.index].name}"
   publicly_accessible     = false
-  vpc_security_group_ids  = ["${aws_security_group.rds_security_group.id}"]
+  vpc_security_group_ids  = ["${aws_security_group.rds_security_group[count.index].id}"]
   iops                    = 1000
   multi_az                = true
   skip_final_snapshot     = true
