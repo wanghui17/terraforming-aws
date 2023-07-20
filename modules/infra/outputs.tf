@@ -7,7 +7,7 @@ output "public_subnet_ids" {
 }
 
 output "deployment_route_table_ids" {
-  value = ["${aws_route_table.deployment.*.id}"]
+  value = "${aws_route_table.deployment.*.id}"
 }
 
 output "zone_id" {
