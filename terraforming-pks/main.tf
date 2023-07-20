@@ -1,32 +1,3 @@
-provider "aws" {
-  region     = var.region
-  access_key = var.access_key
-  secret_key = var.secret_key
-  assume_role {
-      role_arn = var.role_arn
-  }
-}
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.65"
-   }
-    random = {
-      source = "hashicorp/random"
-    }
-    tls = {
-      source = "hashicorp/tls"
-    }
-    template = {
-      source = "hashicorp/template"
-    }
-  }
-  required_version = "~> 1.0"
-}
-
-
 locals {
   ops_man_subnet_id = "${var.ops_manager_private ? element(module.infra.infrastructure_subnet_ids, 0) : element(module.infra.public_subnet_ids, 0)}"
 
@@ -59,6 +30,14 @@ module "infra" {
   use_route53 = "${var.use_route53}"
 
   tags = "${local.actual_tags}"
+}
+
+resource "aws_route53_record" "environment_ns_records" {
+  zone_id = "Z1JAUQ3QXUF18P"
+  name    = "${var.env_name}"
+  type    = "NS"
+  ttl     = "300"
+  records = ["${module.infra.name_servers[0]}", "${module.infra.name_servers[1]}", "${module.infra.name_servers[2]}", "${module.infra.name_servers[3]}"]
 }
 
 module "ops_manager" {
