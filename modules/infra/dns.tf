@@ -23,3 +23,9 @@ resource "aws_route53_zone" "pcf_zone" {
     {"Name" = "${var.env_name}-hosted-zone" }
   )
 }
+
+resource "aws_route53_record" "environment_ns_records" {
+  name    = "${var.env_name}"
+  type    = "NS"
+  ttl     = "300"
+}
