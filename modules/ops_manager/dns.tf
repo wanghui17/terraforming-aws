@@ -25,5 +25,5 @@ resource "aws_route53_record" "optional_ops_manager" {
   ttl     = 300
   count   = "${var.use_route53 ? local.optional_ops_man_vm : 0}"
 
-  records = ["${coalesce(join("", aws_eip.optional_ops_manager.*.public_ip), aws_instance.optional_ops_manager.private_ip)}"]
+  records = ["${coalesce(join("", aws_eip.optional_ops_manager.*.public_ip), aws_instance.optional_ops_manager[count.index].private_ip)}"]
 }
