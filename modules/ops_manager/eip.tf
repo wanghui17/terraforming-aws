@@ -20,7 +20,7 @@ resource "aws_eip" "ops_manager_unattached" {
 }
 
 resource "aws_eip" "optional_ops_manager" {
-  instance = "${aws_instance.optional_ops_manager.id}"
+  instance = "${aws_instance.optional_ops_manager[count.index].id}"
   count    = "${var.private ? 0 : local.optional_ops_man_vm}"
   vpc      = true
 
