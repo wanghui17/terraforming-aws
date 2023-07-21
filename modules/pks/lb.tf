@@ -36,7 +36,7 @@ resource "aws_lb" "pks_api" {
   load_balancer_type               = "network"
   enable_cross_zone_load_balancing = true
   internal                         = false
-  subnets                          = element("${var.public_subnet_ids}",1)
+  subnets                          = ["${var.public_subnet_ids}"]
 }
 
 resource "aws_lb_listener" "pks_api_9021" {
