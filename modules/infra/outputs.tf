@@ -31,7 +31,7 @@ output "public_subnet_cidrs" {
 }
 
 output "infrastructure_subnet_ids" {
-  value = "${aws_subnet.infrastructure_subnets.*.id}"
+  value = ["${aws_subnet.infrastructure_subnets.*.id}"]
 }
 
 output "infrastructure_subnets" {
