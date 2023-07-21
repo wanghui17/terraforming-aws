@@ -31,7 +31,7 @@ resource "aws_security_group" "nat_security_group" {
 
 resource "aws_nat_gateway" "nat" {
   count = "${var.internetless ? 0 : 1}"
-  allocation_id = "${aws_eip.nat_eip.id}"
+  allocation_id = "${aws_eip.nat_eip[count.index].id}"
   subnet_id     = "${element(aws_subnet.public_subnets.*.id, 0)}"
 
   tags = merge(

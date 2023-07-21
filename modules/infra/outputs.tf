@@ -3,11 +3,11 @@ output "vpc_id" {
 }
 
 output "public_subnet_ids" {
-  value = "${aws_subnet.public_subnets.*.id}"
+  value = ["${aws_subnet.public_subnets.*.id}"]
 }
 
 output "deployment_route_table_ids" {
-  value = "${aws_route_table.deployment.*.id}"
+  value = ["${aws_route_table.deployment.*.id}"]
 }
 
 output "zone_id" {
@@ -23,11 +23,11 @@ output "vms_security_group_id" {
 }
 
 output "public_subnet_availability_zones" {
-  value = "${aws_subnet.public_subnets.*.availability_zone}"
+  value = ["${aws_subnet.public_subnets.*.availability_zone}"]
 }
 
 output "public_subnet_cidrs" {
-  value = "${aws_subnet.public_subnets.*.cidr_block}"
+  value = ["${aws_subnet.public_subnets.*.cidr_block}"]
 }
 
 output "infrastructure_subnet_ids" {
@@ -35,19 +35,19 @@ output "infrastructure_subnet_ids" {
 }
 
 output "infrastructure_subnets" {
-  value = "${aws_subnet.infrastructure_subnets.*.id}"
+  value = ["${aws_subnet.infrastructure_subnets.*.id}"]
 }
 
 output "infrastructure_subnet_availability_zones" {
-  value = "${aws_subnet.infrastructure_subnets.*.availability_zone}"
+  value = ["${aws_subnet.infrastructure_subnets.*.availability_zone}"]
 }
 
 output "infrastructure_subnet_cidrs" {
-  value = "${aws_subnet.infrastructure_subnets.*.cidr_block}"
+  value = ["${aws_subnet.infrastructure_subnets.*.cidr_block}"]
 }
 
 output "infrastructure_subnet_gateways" {
-  value = "${data.template_file.infrastructure_subnet_gateways.*.rendered}"
+  value = ["${data.template_file.infrastructure_subnet_gateways.*.rendered}"]
 }
 
 output "aws_lb_interface_endpoint_ips" {
