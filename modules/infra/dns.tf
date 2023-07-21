@@ -1,6 +1,6 @@
 locals {
   data_zone_id     = "${element(concat(data.aws_route53_zone.pcf_zone.*.zone_id, [""]), 0)}"
-  resource_zone_id = "${element(concat(aws_route53_zone.pcf_zone.*.zone_id, [""]), 0)}"
+  resource_zone_id = "${element(concat(aws_route53_zone.pcf_zone.*.zone_id, aws_route53_zone.environment_ns_records.*.zone_id, [""]), 0)}"
   zone_id          = "${var.hosted_zone == "" ? local.resource_zone_id : local.data_zone_id}"
 
   hosted_zone_count = "${var.hosted_zone == "" ? 0 : 1}"
