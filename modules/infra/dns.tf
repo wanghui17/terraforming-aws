@@ -27,7 +27,7 @@ resource "aws_route53_zone" "pcf_zone" {
 
 resource "aws_route53_record" "environment_ns_records" {
   # zone_id = "Z1JAUQ3QXUF18P"
-  zone_id = var.hostd_zone_id
+  zone_id = "${var.hostd_zone_id}"
   name    = "${var.env_name}"
   type    = "NS"
   ttl     = "300"
