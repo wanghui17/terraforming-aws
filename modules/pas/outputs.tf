@@ -1,35 +1,35 @@
 # ========= Subnets ============================================================
 
 output "pas_subnet_ids" {
-  value = ["${aws_subnet.pas_subnets.*.id}"]
+  value = "${aws_subnet.pas_subnets.*.id}"
 }
 
 output "pas_subnet_availability_zones" {
-  value = ["${aws_subnet.pas_subnets.*.availability_zone}"]
+  value = "${aws_subnet.pas_subnets.*.availability_zone}"
 }
 
 output "pas_subnet_cidrs" {
-  value = ["${aws_subnet.pas_subnets.*.cidr_block}"]
+  value = "${aws_subnet.pas_subnets.*.cidr_block}"
 }
 
 output "pas_subnet_gateways" {
-  value = ["${data.template_file.pas_subnet_gateways.*.rendered}"]
+  value = "${data.template_file.pas_subnet_gateways.*.rendered}"
 }
 
 output "services_subnet_ids" {
-  value = ["${aws_subnet.services_subnets.*.id}"]
+  value = "${aws_subnet.services_subnets.*.id}"
 }
 
 output "services_subnet_availability_zones" {
-  value = ["${aws_subnet.services_subnets.*.availability_zone}"]
+  value = "${aws_subnet.services_subnets.*.availability_zone}"
 }
 
 output "services_subnet_cidrs" {
-  value = ["${aws_subnet.services_subnets.*.cidr_block}"]
+  value = "${aws_subnet.services_subnets.*.cidr_block}"
 }
 
 output "services_subnet_gateways" {
-  value = ["${data.template_file.services_subnet_gateways.*.rendered}"]
+  value = "${data.template_file.services_subnet_gateways.*.rendered}"
 }
 
 output "pas_bucket_iam_instance_profile_name" {
