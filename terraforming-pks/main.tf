@@ -51,7 +51,7 @@ module "ops_manager" {
   use_route53              = "${var.use_route53}"
   bucket_suffix            = "${local.bucket_suffix}"
   additional_iam_roles_arn = ["${module.pks.pks_worker_iam_role_arn}", "${module.pks.pks_master_iam_role_arn}"]
-
+  iam_users                = "${var.iam_users}"
   tags = "${local.actual_tags}"
 }
 
