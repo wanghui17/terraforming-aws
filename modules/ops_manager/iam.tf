@@ -47,8 +47,8 @@ resource "aws_iam_policy" "ops_manager_user" {
 }
 
 resource "aws_iam_user_policy_attachment" "ops_manager" {
-  user       = "${aws_iam_user.ops_manager.name}"
-  policy_arn = "${aws_iam_policy.ops_manager_user.arn}"
+  user       = "${aws_iam_user.ops_manager[count.index].name}"
+  policy_arn = "${aws_iam_policy.ops_manager_user[count.index].arn}"
   count = "${var.iam_users}"
 }
 
@@ -58,7 +58,7 @@ resource "aws_iam_user" "ops_manager" {
 }
 
 resource "aws_iam_access_key" "ops_manager" {
-  user = "${aws_iam_user.ops_manager.name}"
+  user = "${aws_iam_user.ops_manager[count.index].name}"
   count = "${var.iam_users}"
 }
 
