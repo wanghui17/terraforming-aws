@@ -17,7 +17,7 @@ variable "internetless" {
 }
 
 variable "iam_users" {
-  default = 0
+  default = false
 }
 
 variable "hostd_zone_id" {
