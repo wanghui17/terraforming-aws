@@ -132,7 +132,3 @@ variable "access_token" {
 variable "role_arn" {
   type = string
 }
-
-variable "svc_role_name" {
-  type = string
-}
