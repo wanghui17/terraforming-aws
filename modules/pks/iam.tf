@@ -96,7 +96,13 @@ resource "aws_iam_instance_profile" "pks_master" {
   }
 }
 
+data "template_file" "pks" {
+  template = "${file("${path.module}/templates/csi_iam_policy.json")}"
+}
+
 data "aws_iam_policy_document" "pks_work_policy" {
+  source_policy_documents = [data.template_file.pks.rendered]
+  
   statement {
     sid = "PksWorkerPolicy"
 
