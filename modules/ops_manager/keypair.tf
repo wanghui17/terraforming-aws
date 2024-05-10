@@ -4,6 +4,7 @@ resource "aws_key_pair" "ops_manager" {
 }
 
 resource "tls_private_key" "ops_manager" {
-  algorithm = "RSA"
-  rsa_bits  = "4096"
+  # algorithm = "RSA"
+  algorithm   = "ECDSA"
+  # rsa_bits  = "4096"
 }
